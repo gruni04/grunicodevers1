@@ -8,9 +8,12 @@
 
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	   <title>@yield('pageTitle','GRUNI INDIA') | GRUNI INDIA - gruni.co.in</title>
+	   {{-- <title>@yield('pageTitle','GRUNI INDIA') | GRUNI INDIA - gruni.co.in</title> --}}
+       <title>Advance Your Medical Career with GRUNI | MBBS, MD, & Research Opportunities</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <meta name="description" content="GRUNI is a leader in medical education, offering MBBS and MD programs with a focus on clinical training and cutting-edge technology. Discover a career in healthcare and contribute to global medical research.">
 
       <link rel="stylesheet" href="{{ asset('assets/web/css/bootstrap.min.css')}}">
 
@@ -42,11 +45,29 @@
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16676531392">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16676531392');
+</script>
+
 
 
    </head>
 
    <style>
+
+/* .video-row {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+} */
 
 .btn-whatsapp-pulse {
 	background: #25d366;
@@ -160,6 +181,7 @@
                            <!--<li><a href="alumni.html">Alumni</a></li>-->
 
                            <li><a href="{{ url('login') }}">Login</a></li>
+                           <li><a href="#" id="enquiry-link">Enquire Now</a></li>
 
                         </ul>
 
@@ -498,11 +520,11 @@
 
                            </li>
 
-                           <li>
+                           {{-- <li>
 
                               <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
 
-                           </li>
+                           </li> --}}
 
                            <li>
 

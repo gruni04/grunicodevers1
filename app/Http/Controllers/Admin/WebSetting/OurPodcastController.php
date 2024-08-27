@@ -49,11 +49,11 @@ class OurPodcastController extends Controller
             'is_active' => 'required',
             // 'description' => 'required'
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-    
+
         $data['title'] = $request->title;
         $data['link'] = $request->link;
         $data['episode_no'] = $request->episode_no;
@@ -61,19 +61,19 @@ class OurPodcastController extends Controller
             $data['image'] = $this->doUpload('image','our-podcast',$request);
         }
         $data['is_active'] = $request->is_active;
-        // $data['description'] = $request->description;
+        //$data['description'] = $request->description;
         if($request->edit_id && $request->edit_id>0){
             DB::table('tbl_our_podcast')->where('id', $request->edit_id)->update($data);
         }else{
             $data['slug'] = $this->createSlug($data['title'], 'tbl_our_podcast');
             DB::table('tbl_our_podcast')->insert($data);
         }
-        
+
         return response()->json(['status'=>1, 'message'=>'Our Podcast Save successfully']);
     }
 
     public function doUpload($file,$directory,$request){
-      
+
         $file = $request->file($file);
         $fileName = uniqid() . '_sw_' . trim($file->getClientOriginalName());
 
@@ -120,7 +120,7 @@ class OurPodcastController extends Controller
                 ->skip($start)
                 ->take($rowperpage)
                 ->get();
-                
+
         $data_arr = array();
         $sr = 1;
         foreach($records as $val){
@@ -130,12 +130,12 @@ class OurPodcastController extends Controller
             $arr["link"] = $val->link;
             $arr["episode_no"] = $val->episode_no;
             $arr["is_active"] = $val->is_active ==1 ? "Active" : "Inactive";
-                        
+
             $action = '';
-            
+
             $action .= ' <a href="'.route('web-setting.save-our-podcast', ['id'=>$val->id]).'" class="text-gray m-r-15 dropdown-item"><i class="ti-pencil"></i> Edit</a>';
             $action .= ' <a href="javascript:void(0)" onclick="delete_item(`'.route('web-setting.delete-our-podcast', ['id'=>$val->id]).'`)" class="text-danger dropdown-item"><i class="ti-trash"></i> Delete</a>';
-            
+
             $arr["action"] = !empty($action) ? '<div class="dropdown dropdown-animated scale-left">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     Action
@@ -155,7 +155,7 @@ class OurPodcastController extends Controller
            "aaData" => $data_arr
         );
 
-        return response()->json($response); 
+        return response()->json($response);
     }
 
     public function delete(Request $request, $id)

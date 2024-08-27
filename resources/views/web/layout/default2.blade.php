@@ -18,9 +18,20 @@
       <link rel="stylesheet" href="{{ asset('assets/web/css/dark.css')}}">
       <link rel="stylesheet" href="{{ asset('assets/web/css/responsive.css')}}">
       <link rel="icon" type="image/png" href="{{ asset('assets/web/images/favicon.png')}}">
+
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16676531392">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16676531392');
+</script>
    </head>
    <body>
-      
+
       <div class="top-header-area">
          <div class="container-fluid">
             <div class="row align-items-center">
@@ -100,11 +111,11 @@
                            <ul class="dropdown-menu">
                               <li class="nav-item"><a href="{{ route('web.testimonial') }}" class="nav-link">Testimonial</a></li>
                               <li class="nav-item"><a href="{{ route('web.success-story') }}" class="nav-link">Result</a></li>
-                              
+
                            </ul>
                         </li>
                      </ul>
-                     
+
                   </div>
                </nav>
             </div>
@@ -121,10 +132,10 @@
             </div>
          </div>
       </div>
-      
+
       @yield('content')
 
-      
+
 
       <div class="footer-area pt-100 pb-70">
          <div class="container">
@@ -230,7 +241,7 @@
          <i class="ri-arrow-up-s-line"></i>
          <i class="ri-arrow-up-s-line"></i>
       </div>
-      
+
       <script src="{{ asset('assets/web/js/jquery.min.js')}}"></script>
       <script src="{{ asset('assets/web/js/bootstrap.bundle.min.js')}}"></script>
       <script src="{{ asset('assets/web/js/jquery.meanmenu.js')}}"></script>

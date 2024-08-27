@@ -30,7 +30,7 @@
 					         <div class="col-lg-4 col-sm-6">
 					            <div class="single-academics-card">
 					               <div class="icon">
-								        <a href="{{ url('uploads/success-story/'.$v->image) }}"><img src="{{ url('uploads/success-story/'.$v->image) }}" style="height:220px;" alt="Image">
+								        <a href="{{ url('uploads/success-story/'.$v->image) }}"><img src="{{ url('uploads/success-story/'.$v->image) }}" style="height:220px;" alt="Image" loading="lazy">
                                         </a>
                                     </div>
 					               <!--<a href="https://www.gruni.co.in/student-details/dr-dhruvi-sanjay-joshi">-->

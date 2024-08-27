@@ -14,7 +14,7 @@
 
 
 @section('content')
-	
+
 	<div class="card">
 	    <div class="card-header border bottom">
 	        <h4 class="card-title">{{ $sub_title }}</h4>
@@ -23,7 +23,7 @@
 	    <div class="card-body">
 	        <div class="row">
 	            <div class="col-sm-12">
-	            	
+
 	            	<form action="{{ route('web-setting.store-our-podcast') }}" method="POST" class="m-t-15" id="form">
 
 	            		<input type="hidden" name="edit_id" value="{{ $edit_data && $edit_data->id ? $edit_data->id : ''  }}" >
@@ -40,14 +40,14 @@
                                     <input type="text" class="form-control" value="{{ $edit_data && $edit_data->episode_no ? $edit_data->episode_no : ''  }}" name="episode_no" placeholder="Enter Episode No" required>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Link <span class="text-danger">*</span></label>
                                     <input type="url" class="form-control" value="{{ $edit_data && $edit_data->link ? $edit_data->link : ''  }}" name="link" placeholder="Enter Link" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Image <span class="text-danger">*</span></label>
                                 	<input id="image" name="image" type="file" class="form-control" {{ $edit_data && $edit_data->image ? '' : 'required'  }}>
@@ -55,8 +55,19 @@
                                 	<img src="{{ $edit_data && $edit_data->image ? url('uploads/our-podcast/'.$edit_data->image) : ''  }}" class="img img-fluid" style="width: 25%;">
                                 	@endif
                                 </div>
+                            </div> --}}
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Image</label>
+                                    <input id="image" name="image" type="file" class="form-control">
+                                    @if($edit_data && $edit_data->image)
+                                    <img src="{{ $edit_data && $edit_data->image ? url('uploads/our-podcast/'.$edit_data->image) : ''  }}" class="img img-fluid" style="width: 25%;">
+                                    @endif
+                                </div>
                             </div>
-                            
+
+
                             <div class="col-md-6">
                                 <h5>Status <span class="text-danger">*</span></label></h5>
                                 <div class="m-t-15 d-flex">
@@ -70,9 +81,9 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                         <div class="form-row text-right">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -81,7 +92,7 @@
                                         <button class="btn btn-gradient-success" type="submit">Submit</button>
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                     </form>
 	            </div>
@@ -92,7 +103,7 @@
 
 
 @section('page-script')
-	    
+
     <script type="text/javascript">
 		// Wait for the DOM to be ready
 		$("#form").validate({
@@ -125,7 +136,7 @@
 		                    	window.location.href = '{{ route('web-setting.our-podcast') }}';
 		                    }, 1500);
 		                }else{
-		                   _error(responce.message); 
+		                   _error(responce.message);
 		                }
 		              },
 		              error:function()
@@ -135,7 +146,7 @@
 		              complete:function()
 		              {
 		              }
-		        });    
+		        });
 		    }
 		});
 	</script>

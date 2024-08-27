@@ -2,7 +2,7 @@
 @section('pageTitle', $page_title)
 
 @section('content')
-    
+
     @php
       $home_slider = DB::table('tbl_home_banner')->where('is_active', 1)->get();
       $latest_news = DB::table('tbl_latest_news')->where('is_active', 1)->limit(10)->get();
@@ -28,11 +28,11 @@
                </div>
             </div>
             @endforeach
-            
+
          </div>
       </div>
-      
-      
+
+
       <div class="courses-area ptb-50 bg-f4f6f9">
          <div class="container">
             <div class="section-title">
@@ -43,7 +43,7 @@
                @foreach($school_of_medicine_course as $k=>$v)
                <div class="single-courses-card style3">
                   <div class="courses-img">
-                     <a href="javascript:void();" class="show-modal"><img src="{{ url('uploads/school-of-medicine-course/'.$v->image) }}" alt="Image"></a>
+                     <a href="javascript:void();" class="show-modal"><img src="{{ url('uploads/school-of-medicine-course/'.$v->image) }}" alt="Image" loading="lazy"></a>
                   </div>
                   <div class="courses-content">
                      <a href="javascript:void();" class="show-modal">
@@ -51,8 +51,8 @@
                      </a>
                   </div>
                </div>
-               @endforeach               
-               
+               @endforeach
+
             </div>
          </div>
       </div>
@@ -61,7 +61,7 @@
             <div class="row align-items-center">
                <div class="col-lg-6 admission-content">
                   <div class="admission-image">
-                  <img src="{{ asset('assets/web/images/campus-information/gruni-uni.jpg')}}" alt="gruni-uni">
+                  <img src="{{ asset('assets/web/images/campus-information/gruni-uni.jpg')}}" alt="gruni-uni" loading="lazy">
                   <div class="icon">
                      <a class="popup-youtube play-btn show-modal" href="javascript:void();"><i class="ri-play-fill"></i></a>
                   </div>
@@ -73,7 +73,7 @@
                         <h2>GRUNI Information</h2>
                         <p>{!! $gruni_information->description !!}</p>
                      </div>
-                     
+
                      <div class="counter">
                         <div class="row">
                            <div class="col-lg-4 col-4">
@@ -122,7 +122,7 @@
                @foreach($latest_news as $k=>$v)
                <div class="single-news-card style2">
                   <div class="news-img">
-                     <a href="javascript:void();" class="show-modal"><img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image"></a>
+                     <a href="javascript:void();" class="show-modal"><img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image" loading="lazy"></a>
                   </div>
                   <div class="news-content">
                      <!--<div class="list">
@@ -137,11 +137,11 @@
                   </div>
                </div>
                @endforeach
-               
+
             </div>
          </div>
       </div>
-      
+
       <div class="campus-life-area ptb-50">
          <div class="container">
             <div class="section-title">
@@ -158,7 +158,7 @@
                         @else
                         <a href="javascript:void();" class="show-modal">
                         @endif
-                        <img src="{{ url('uploads/discover-gruni/'.$v->image) }}" alt="Image"></a>
+                        <img src="{{ url('uploads/discover-gruni/'.$v->image) }}" alt="Image" loading="lazy"></a>
                      </div>
                      <div class="campus-content">
                         <a href="javascript:void();" class="show-modal"><h3>{{ $v->title }}<i class="flaticon-next"></i></h3></a>
@@ -166,13 +166,13 @@
                   </div>
                </div>
                @endforeach
-               
+
             </div>
-            
+
          </div>
       </div>
-      
-      
+
+
       <div class="podcasts-area ptb-50 bg-f4f6f9">
          <div class="container">
             <div class="row">
@@ -186,7 +186,7 @@
                      <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200" data-aos-once="true">
                         <div class="single-podcasts-card style3">
                            <div class="podcasts-image">
-                              <img src="{{ url('uploads/our-podcast/'.$v->image) }}" alt="Image">
+                              <img src="{{ url('uploads/our-podcast/'.$v->image) }}" alt="Image" loading="lazy">
                               <a class="popup-youtube play-btn show-modal" href="javascript:void();"><i class="ri-play-fill"></i></a>
                               <div class="episodes">
                                  <p>Episodes:{{ $v->episode_no }}</p>
@@ -201,7 +201,7 @@
                         </div>
                      </div>
                      @endforeach
-                     
+
                   </div>
                </div>
                <div class="col-lg-4">
@@ -219,7 +219,7 @@
                             </div>
                         </li>
                         @endforeach
-                                                
+
                      </ul>
                   </div>
                   <div class="subscribe-area">
@@ -250,7 +250,7 @@
                @foreach($testimonial as $k=>$v)
                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200" data-aos-once="true">
                   <div class="single-stories-card style2">
-                      
+
                      <iframe src="{{ $v->link }}" title="{{ $v->title }}"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                      <div class="stories-content">
                         <h3>{{ $v->title }}</h3>
@@ -285,7 +285,7 @@
             </div>
          </div>
       </div>
-      
+
       <div class="lates-news-area ptb-50 bg-f4f6f9">
          <div class="container">
             <div class="section-title">
@@ -296,7 +296,7 @@
                @foreach($success_story as $k=>$v)
                <div class="single-news-card style2">
                   <div class="news-img">
-                     <a href="javascript:void();" class="show-modal"><img src="{{ url('uploads/success-story/'.$v->image) }}" alt="Image"></a>
+                     <a href="javascript:void();" class="show-modal"><img src="{{ url('uploads/success-story/'.$v->image) }}" alt="Image" loading="lazy"></a>
                   </div>
                   <div class="news-content">
                      <a href="javascript:void();" class="show-modal">
@@ -306,11 +306,11 @@
                   </div>
                </div>
                @endforeach
-               
+
             </div>
          </div>
       </div>
-      
+
       <div class="student-life-area ptb-50">
          <div class="container">
             <div class="section-title">
@@ -321,7 +321,7 @@
                <div class="col-lg-6">
                   <div class="student-life-card">
                       <a href="javascript:void();" class="show-modal">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-1.jpg')}}" alt="Image">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-1.jpg')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>Accommodation</p>
                      </div>
@@ -331,7 +331,7 @@
                <div class="col-lg-6">
                    <a href="javascript:void();" class="show-modal">
                   <div class="student-life-card">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-2.jpg')}}" alt="Image">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-2.jpg')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>India Food</p>
                      </div>
@@ -339,7 +339,7 @@
                   </a>
                   <a href="javascript:void();" class="show-modal">
                   <div class="student-life-card">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-3.jpg')}}" alt="Image">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-3.jpg')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>Health and Wellness</p>
                      </div>
@@ -349,17 +349,17 @@
             </div>
          </div>
       </div>
-      
-      
+
+
       <style>
     .enquiry-form-fields {
         padding: 10px;
     }
-    .modal-header { 
+    .modal-header {
         padding: 3px 20px !important;
     }
     @media (min-width: 576px){
-        .modal { 
+        .modal {
             --bs-modal-margin: -5.25rem;
         }
     }
@@ -374,11 +374,11 @@
         </button>
       </div>
       <div class="modal-body">
-       
+
       <form class="model-form row" action="{{route('web.save-enquiry')}}" method="post" enctype="multipart/form-data" id="enquiry-form">
         @csrf
         <div class="form-group col-12 form-group enquiry-form-fields">
-            <img src="https://edugaaydsoverseas.com/web-assets/images/enquiry-form-img.jpg" alt="Image" style="border-radius: 5px;">
+            <img src="https://edugaaydsoverseas.com/web-assets/images/enquiry-form-img.jpg" alt="Image" style="border-radius: 5px;" loading="lazy">
         </div>
         <div class="form-group col-6 form-group enquiry-form-fields">
             <input type="text" placeholder="Full Name *" class="form-control" name="name" id="name1" required oninput="validateInput(this)">
@@ -394,7 +394,7 @@
             <input type="text" placeholder="2023 Marks *" class="form-control" name="admission_city" id="admission" required>
         </div>
         </div>
-        
+
         <div class="form-group col-12 enquiry-form-fields">
             <textarea placeholder="Message *" class="form-control message" name="message" id="message1"></textarea>
         </div>
@@ -414,15 +414,15 @@
            $("#enquiry-Modal").modal('show');
         });
     });
-    
+
     $(document).ready(function(){
-        
+
            $("#enquiry-Modal").modal('show');
-      
+
     });
-    
+
     $(document).on('click', '.modal-close', function(){
-        
+
         $("#enquiry-Modal").modal('hide');
     });
 </script>

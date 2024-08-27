@@ -23,7 +23,7 @@
 
 	               <div class="meetings">
 	                  <h2>Health and Wellness</h2>
-	                  <img src="{{ asset('assets/web/images/stundent-life/student-life-3.jpg')}}" alt="Image">
+	                  <img src="{{ asset('assets/web/images/stundent-life/student-life-3.jpg')}}" alt="Image" loading="lazy">
 	                  <p><br>We establish a sophisticated academic culture and create intellectual wealth: By implementing educational programmes based on scientific achievements and orienting our activities towards the student, we will prepare generations of competent specialists for Humanitarian, Social, Administrative, Medical and other spheres of high demand, who will be able to integrate into the international educational and labour markets and will take their share of responsibility for the future of the country; together with undergraduate programmes, we will develop Master’s and PhD programmes as a highly effective system for creating employees with deep/wide competences for flourishing of the social culture and economics.
 
 
@@ -73,7 +73,7 @@ The University will become a scientific-educational centre of international reno
 				   <div class="related-post-box">
 				      <div class="related-post-content">
 			            <a href="{{ route('web.latest-news', ['id'=> $v->slug]) }}">
-			            	<img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image">
+			            	<img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image" loading="lazy">
 			            </a>
 			            <h4>
 			               <a href="{{ route('web.latest-news', ['id'=> $v->slug]) }}">{{ $v->title }}</a>

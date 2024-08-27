@@ -27,7 +27,7 @@
 		               @foreach($latest_news as $k=>$v)
 		               <div class="col-4 single-news-card style2">
 		                  <div class="news-img">
-		                     <a href="{{ route('web.latest-news', ['id'=> $v->slug]) }}"><img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image"></a>
+		                     <a href="{{ route('web.latest-news', ['id'=> $v->slug]) }}"><img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image" loading="lazy"></a>
 		                  </div>
 		                  <div class="news-content">
 		                     <div class="list">

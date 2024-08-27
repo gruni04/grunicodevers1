@@ -29,7 +29,7 @@
 			         @endphp
 	               <div class="meetings">
 	                  <h2>{{ $news_details->title }}</h2>
-	                  <img src="{{ url('uploads/latest-news/'.$news_details->image) }}" alt="Image">
+	                  <img src="{{ url('uploads/latest-news/'.$news_details->image) }}" alt="Image" loading="lazy">
 	                  {!! $news_details->description !!}
 	               </div>
 	            </div>
@@ -48,7 +48,7 @@
 				   <div class="related-post-box">
 				      <div class="related-post-content">
 			            <a href="{{ route('web.latest-news', ['id'=> $v->slug]) }}">
-			            	<img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image">
+			            	<img src="{{ url('uploads/latest-news/'.$v->image) }}" alt="Image" loading="lazy">
 			            </a>
 			            <h4>
 			               <a href="{{ route('web.latest-news', ['id'=> $v->slug]) }}">{{ $v->title }}</a>

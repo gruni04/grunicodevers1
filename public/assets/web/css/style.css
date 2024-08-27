@@ -2735,9 +2735,6 @@ textarea {
     margin-bottom: 30px
 }
 
-.review-form .form-group label {
-    mn: 7px
-}
 
 .single-reviews-card {
     position: relative;
@@ -4173,9 +4170,6 @@ textarea {
     list-style-type: none
 }
 
-.single-podcasts-card {
-    /*margin-bottom: 30px;*/
-}
 
 .single-podcasts-card .podcast-content span {
     color: #94191c;

@@ -68,6 +68,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16676531392">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16676531392');
+</script>
 </head>
 
 <body class="theme-color-3">
@@ -125,11 +136,11 @@
 
                                         <form method="get" action="{{ url('products-lists') }}">
                                     <div class="searchbar-box-2 input-group d-xl-flex d-none">
-                                            
+
                                             <button class="btn search-icon" type="button">
                                                 <i class="iconly-Search icli"></i>
                                             </button>
-                                            <input type="text" class="form-control" name="keyword" 
+                                            <input type="text" class="form-control" name="keyword"
                                                 placeholder="Search for products, styles,brands...">
                                             <button class="btn search-button" type="submit">Search</button>
                                     </div>
@@ -180,26 +191,26 @@
                                             <a class="nav-link dropdown-toggle" href="javascript:void(0)"
                                                 data-bs-toggle="dropdown">Sculpture</a>
 
-                                            
+
                                         </li>
 
                                         <li class="nav-item dropdown dropdown-mega">
                                             <a class="nav-link dropdown-toggle ps-xl-2 ps-0" href="javascript:void(0)"
                                                 data-bs-toggle="dropdown">Diya</a>
 
-                                           
+
                                         </li>
 
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="javascript:void(0)"
                                                 data-bs-toggle="dropdown">Wall Decor</a>
-                                            
+
                                         </li>
 
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="javascript:void(0)"
                                                 data-bs-toggle="dropdown">TABLEWARE</a>
-                                            
+
                                         </li>
 
                                         <li class="nav-item">
@@ -218,7 +229,7 @@
 
                         <div class="rightside-menu">
                             <ul class="option-list-2">
-                                
+
 
                                 <li class="onhover-dropdown">
                                     <a href="javascript:void(0)" class="header-icon swap-icon">
@@ -287,7 +298,7 @@
                                 </li>
                             </ul>
                             @if(Auth::id())
-                            
+
                             <a href="{{ url('mydashboard') }}" class="user-box">
                                 <span class="header-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -313,7 +324,7 @@
                             </a>
                             @endif
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -362,7 +373,7 @@
         </ul>
     </div>
     <!-- mobile fix menu end -->
-	
+
 
     @yield('content')
 
@@ -899,7 +910,7 @@
     <div class="bg-overlay"></div>
     <!-- Bg overlay End -->
 
-    
+
 
     <!-- Bootstrap js-->
     <script src="{{ asset('assets/web/js/bootstrap/bootstrap.bundle.min.js')}}"></script>

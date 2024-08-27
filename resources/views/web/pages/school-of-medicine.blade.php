@@ -25,7 +25,7 @@
 			         @endphp
 	               <div class="meetings">
 	                  <h2>{{ $medicine_details->title }}</h2>
-	                  <img src="{{ url('uploads/school-of-medicine/'.$medicine_details->image) }}" alt="Image">
+	                  <img src="{{ url('uploads/school-of-medicine/'.$medicine_details->image) }}" alt="Image" loading="lazy">
 	                  {!! $medicine_details->description !!}
 	               </div>
 	            </div>
@@ -42,7 +42,7 @@
                         @php
 					            $medicine = DB::table('tbl_school_of_medicine')->where('is_active', 1)->where('course', $v->slug)->get();
 					         @endphp
-                              
+
 						      <div class="accordion-item">
                            <h2 class="accordion-header" id="heading1">
                               <button class="accordion-button {{ $medicine_details->course==$v->slug ? "show" : "collapsed" }} " type="button" data-bs-toggle="collapse" data-bs-target="#collapseabout-university-{{ $v->slug }}" aria-expanded=" {{ $medicine_details->course==$v->slug ? "true" : "false" }} " aria-controls="collapseabout-university-{{ $v->slug }}">{{ $v->course_name }}</button>
@@ -62,7 +62,7 @@
                         @endforeach
 
 						</div>
-                     
+
                </div>
                   <div class="tranding categories announcement">
                      <h3>Announcements</h3>

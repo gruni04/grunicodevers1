@@ -29,13 +29,13 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>                        
+                    <tbody>
                     </tbody>
                 </table>
-            </div> 
-        </div>       
-    </div> 
-    
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 
@@ -48,9 +48,9 @@
         function delete_item(url) {
             if(confirm("Are You Sure want to delete Record?")){
                 window.location = url;
-            } 
+            }
         }
-        
+
         $(document).ready(function() {
             // DataTable
             $('.datatable').DataTable({
