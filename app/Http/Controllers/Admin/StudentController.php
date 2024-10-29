@@ -23,9 +23,9 @@ class StudentController extends Controller
 {
     public function index(Request $request)
     {
-        // $response = file_get_contents('https://expert.propertyfinder.ae/feed/newlaunch/propertyfinder/ad20af04d8886773a4fb37a61bcfee48'); 
-        // $xml = simplexml_load_string($response); 
-        // $json = json_encode($xml); 
+        // $response = file_get_contents('https://expert.propertyfinder.ae/feed/newlaunch/propertyfinder/ad20af04d8886773a4fb37a61bcfee48');
+        // $xml = simplexml_load_string($response);
+        // $json = json_encode($xml);
         // $array = json_decode($json,TRUE);
         // echo "<pre>";
         // print_r($array);die;
@@ -34,13 +34,13 @@ class StudentController extends Controller
         $data['sub_title']="Student List";
         return view('admin.student.index',$data);
     }
-    
-    
+
+
     public function profile_list(Request $request)
     {
-        // $response = file_get_contents('https://expert.propertyfinder.ae/feed/newlaunch/propertyfinder/ad20af04d8886773a4fb37a61bcfee48'); 
-        // $xml = simplexml_load_string($response); 
-        // $json = json_encode($xml); 
+        // $response = file_get_contents('https://expert.propertyfinder.ae/feed/newlaunch/propertyfinder/ad20af04d8886773a4fb37a61bcfee48');
+        // $xml = simplexml_load_string($response);
+        // $json = json_encode($xml);
         // $array = json_decode($json,TRUE);
         // echo "<pre>";
         // print_r($array);die;
@@ -118,26 +118,26 @@ class StudentController extends Controller
             case 'InterviewScheduledTab':
                 $response = $this->store_interview_scheduled($request);
                 break;
-            
+
             case 'UniversityTab':
                 $response = $this->store_university($request);
                 break;
-            
+
             case 'IndianOfficeTab':
                 $response = $this->store_indian_office($request);
                 break;
-            
+
             case 'HostelTab':
                 $response = $this->store_hostel($request);
                 break;
-            
+
             default:
                 $response = ['status'=>0, 'message'=>'Something went wrong....'];
                 break;
         }
         // echo "string";die;
-        
-        
+
+
         return $response;
     }
     /*
@@ -166,9 +166,9 @@ class StudentController extends Controller
          $id = $request->application_edit_id;
         if(empty($id)){
         $mobil_duplicate = DB::table('tbl_student')->where('mobile', $request->mobile)->count();
-        
+
         if($mobil_duplicate > 0){
-          return response()->json(['status'=>2, 'message'=>'Mobile Number Already Exist']);  
+          return response()->json(['status'=>2, 'message'=>'Mobile Number Already Exist']);
         }
         }
         $validator = Validator::make($request->all(), [
@@ -185,11 +185,11 @@ class StudentController extends Controller
             'city' => 'required',
             'address' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-       
+
         // print_r($_POST);die;
         $data['agent_partner_id'] = Auth::user()->id_number;
         $data['application_fee'] = $request->application_fee;
@@ -216,7 +216,7 @@ class StudentController extends Controller
         }
         if(count($_POST['attatchment_type'])>0){
             $data = array();
-            for ($i=0; $i < count($_POST['attatchment_type']); $i++) { 
+            for ($i=0; $i < count($_POST['attatchment_type']); $i++) {
                 $sub_array = array();
                 $sub_array['doc_for'] = 1;
                 $sub_array['student_id'] = $s_id;
@@ -224,7 +224,7 @@ class StudentController extends Controller
                 $sub_array['attatchment_value'] = $_POST['attatchment_value'][$i];
                 $passport_duplicate = DB::table('tbl_student_document')->where('attatchment_value', $_POST['attatchment_value'][$i])->count();
                 if($passport_duplicate > 0){
-                    return response()->json(['status'=>2, 'message'=>'Paasport Number Already Exist']);   
+                    return response()->json(['status'=>2, 'message'=>'Paasport Number Already Exist']);
                 }
                 $sub_array['attatchment'] = $this->doUploadImages("attatchment", "student/documents", $request, $i);
                 $data[] = $sub_array;
@@ -234,7 +234,7 @@ class StudentController extends Controller
             }
         }
         $res = $this->store_notification($s_id, "application");
-        
+
         return response()->json([ 'status'=>1, 'message'=>'Student Save successfully', 'user_id'=>$s_id, 'number'=>$res['user_contact'], 'notification'=>$res['msg'] ]);
         // return ['status'=>1, 'message'=>'Student Save successfully', 'user_id'=>$s_id];
     }
@@ -244,11 +244,11 @@ class StudentController extends Controller
             // 'admission_letter' => 'required',
             // 'admission_letter_doc' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-        
+
         $data['admission_letter'] = $request->admission_letter;
         $data['admission_letter_comment'] = $request->admission_letter_comment;
         if($request->file('admission_letter_doc')){
@@ -265,11 +265,11 @@ class StudentController extends Controller
             'fee_amount' => 'required',
             'attatchment' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-        
+
         $data['fee_year'] = $request->fee_year;
         $data['fee_amount'] = $request->fee_amount;
         $data['comment'] = $request->comment;
@@ -290,18 +290,18 @@ class StudentController extends Controller
             'time' => 'required',
             // 'comment' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-        
+
         $data['platform'] = $request->platform;
         $data['link'] = $request->link;
         $data['date'] = $request->date;
         $data['time'] = $request->time;
         $data['comment'] = $request->comment;
         $data['student_id'] = $request->edit_id;
-        
+
         DB::table('tbl_student_interview_history')->insert($data);
         $res = $this->store_notification($request->edit_id, "interview_scheduled");
         return response()->json(['status'=>1, 'message'=>'Interview Scheduled Save successfully', 'number'=>$res['user_contact'], 'notification'=>$res['msg'] ]);
@@ -311,11 +311,11 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'attatchment' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-        
+
         $data['university_payment_type'] = $request->university_payment_type;
         if($request->file('university_payment_doc')){
             $data['university_payment_doc'] = $this->doUpload('university_payment_doc','student/documents', $request);
@@ -323,7 +323,7 @@ class StudentController extends Controller
         DB::table('tbl_student')->where('id', $request->edit_id)->update($data);
         if(count($_POST['attatchment_type'])>0){
             $data = array();
-            for ($i=0; $i < count($_POST['attatchment_type']); $i++) { 
+            for ($i=0; $i < count($_POST['attatchment_type']); $i++) {
                 $sub_array = array();
                 $sub_array['doc_for'] = 2;
                 $sub_array['student_id'] = $request->edit_id;
@@ -346,11 +346,11 @@ class StudentController extends Controller
             'visa_details' => 'required',
             'visa_details_date' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-        
+
         $data['visa_details'] = $request->visa_details;
         $data['visa_details_date'] = $request->visa_details_date;
         if($request->file('visa_details_doc')){
@@ -367,11 +367,11 @@ class StudentController extends Controller
             'fee_amount' => 'required',
             'attatchment' => 'required',
         ]);
-        
+
         if (!$validator->passes()) {
             return response()->json(['status'=>2, 'message'=>$validator->errors()->all()]);
         }
-        
+
         $data['fee_year'] = $request->fee_year;
         $data['fee_amount'] = $request->fee_amount;
         $data['student_id'] = $request->edit_id;
@@ -407,7 +407,7 @@ class StudentController extends Controller
                     $user_id=$user_data->id;
                     $tab_id="admission-tab";
                     break;
-                
+
                 case 'tutuion_fee':
                     $msg = "Tution Fee Updated.";
                     $user_id="1";
@@ -423,43 +423,43 @@ class StudentController extends Controller
                     $user_id=$user_data->id;
                     $tab_id="interview-tab";
                     break;
-                
+
                 case 'interview_scheduled_verify':
                     $msg = "Interview Verified, Please Upload the University Details.";
                     $user_id=$user_data->id;
                     $tab_id="interview-tab";
                     break;
-                
+
                 case 'university':
                     $msg = "University Details Uploaded, Verify Now.";
                     $user_id="1";
                     $tab_id="university-tab";
                     break;
-                
+
                 case 'university_verify':
                     $msg = "Your University Details Verified, Now Upload Visa/Indian Office Details.";
                     $user_id="1";
                     $tab_id="university-tab";
                     break;
-                
+
                 case 'indian_office':
                     $msg = "Indian Office Details Uploaded, Verify Now.";
                     $user_id="1";
                     $tab_id="indian-office-tab";
                     break;
-                
+
                 case 'indian_office_verify':
                     $msg = "Your Indian Office Details Verified, Pay ACCOMMODATIONS/HOSTEL FEE.";
                     $user_id=$user_data->id;
                     $tab_id="indian-office-tab";
                     break;
-                
+
                 case 'hostel':
                     $msg = "ACCOMMODATIONS/HOSTEL FEE Uploaded, Verify Now.";
                     $user_id="1";
                     $tab_id="hostel-tab";
                     break;
-                
+
                 default:
                     $msg = "";
                     $user_id="";
@@ -490,9 +490,9 @@ class StudentController extends Controller
         }
         return ['user_contact'=>$user_data->contact, 'msg'=>$msg];
     }
-    
+
     public function doUpload($file,$directory,$request){
-      
+
         $file = $request->file($file);
         $fileName = uniqid() . '_sw_' . trim($file->getClientOriginalName());
 
@@ -505,14 +505,14 @@ class StudentController extends Controller
         return $fileName;
     }
     public function doUploadImages($file,$directory,$request, $index=''){
-        
+
         if($index!=''){
             $file = $request->file($file)[$index];
         }else{
             $file = $request->file($file);
         }
         $fileName = uniqid() . '_sw_' . trim($file->getClientOriginalName());
-        
+
         $path = public_path().'/uploads/' . $directory;
         if (!file_exists($path)) {
             File::makeDirectory($path, $mode = 0777, true, true);
@@ -542,7 +542,7 @@ class StudentController extends Controller
         $columnName = $columnName_arr[$columnIndex]['data']; // Column name
         $columnSortOrder = $order_arr[0]['dir']; // asc or desc
         $searchValue = $search_arr['value']; // Search value
-        
+
         $id = Auth::user()->id;
         $agent_partner_id = Auth::user()->id_number;
 
@@ -563,21 +563,21 @@ class StudentController extends Controller
                                                         ->where('father_name', 'like', '%' .$searchValue . '%')
                                                         ->orWhere('mobile', 'like', '%' .$searchValue . '%')
                                                         ->orWhere('name', 'like', '%' .$searchValue . '%');*/
-        
+
         if($id!=1){
             $totalRecordswithFilter = $totalRecordswithFilter->where('agent_partner_id', $agent_partner_id);
         }
         $totalRecordswithFilter = $totalRecordswithFilter->count();
-    
-    
-        
+
+
+
         DB::enableQueryLog();
-        
+
         // Fetch records
         $records = DB::table('tbl_student')->orderBy($columnName, $columnSortOrder)
                                         // ->where('name', 'like', '%' .$searchValue . '%')
                                         ->select('*');
-        
+
         // if(!empty($searchValue)){
             $records = $records->whereRaw('(father_name like "%'.$searchValue.'%" OR mobile like "%'.$searchValue.'%" OR name like "%'.$searchValue.'%"  )');
                                 //->where('father_name', 'like', '%' .$searchValue . '%')
@@ -597,21 +597,21 @@ class StudentController extends Controller
                                     ->take($rowperpage)
                                     ->orderBy("id", "DESC")
                                     ->get();
-        
+
         $last_qry = DB::getQueryLog();
-        
+
         $data_arr = array();
         $sr = 1;
         foreach($records as $val){
             $arr["id"] = $sr++;
-            
+
             $arr["name"] = $val->name;
             $arr["mobile"] = $val->mobile;
             $arr["father_name"] = $val->father_name;
             // $arr["image"] = '<img src="'.url('uploads/teaching/'.$val->image).'" class="img img-fluid">' ;
-            
+
             // $arr["is_active"] = $val->is_active ==1 ? "Active" : "Inactive";
-            
+
             $action = '';
             if(auth()->user()->can('student-edit')){
                 $action .= ' <a href="'.route('admin.student.save-student', ['id'=>$val->id]).'" class="text-gray m-r-15 dropdown-item"><i class="ti-pencil"></i> Edit</a>';
@@ -622,7 +622,7 @@ class StudentController extends Controller
             if(auth()->user()->can('student-delete')){
                 $action .= ' <a href="javascript:void(0)" onclick="delete_item(`'.route('admin.student.delete-student', ['id'=>$val->id]).'`)" class="text-danger dropdown-item"><i class="ti-trash"></i> Delete</a>';
             }
-            
+
             $arr["action"] = !empty($action) ? '<div class="dropdown dropdown-animated scale-left">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     Action
@@ -642,18 +642,18 @@ class StudentController extends Controller
         //   "last_qry" => $last_qry,
            "draw" => intval($draw),
            "iTotalRecords" => $totalRecords,
-           "iTotalRecords" => $totalRecords,
+        //    "iTotalRecords" => $totalRecords,
            "iTotalDisplayRecords" => $totalRecordswithFilter,
            "aaData" => $data_arr
         );
 
-        return response()->json($response); 
+        return response()->json($response);
     }
-    
-    
+
+
     public function get_fee_history(Request $request, $student_id=''){
         if(empty($student_id)){
-            return response()->json(["status" => 1,"aaData" => array()]); 
+            return response()->json(["status" => 1,"aaData" => array()]);
         }
         // Fetch records
         $records = DB::table('tbl_student_fee_history')
@@ -668,11 +668,11 @@ class StudentController extends Controller
            "aaData" => $records
         );
 // print_r($response); die;
-        return response()->json($response); 
+        return response()->json($response);
     }
-    
+
     public function get_detais_of_admin(Request $request){
-       
+
         // Fetch records
         $id =Auth::user()->id_number;
         $records = DB::table('tbl_student')
@@ -691,13 +691,13 @@ class StudentController extends Controller
            "aaData" => $records
         );
 // print_r($response); die;
-        return response()->json($response); 
+        return response()->json($response);
     }
-    
-    
+
+
     public function get_interview_history(Request $request, $student_id=''){
         if(empty($student_id)){
-            return response()->json(["status" => 1,"aaData" => array()]); 
+            return response()->json(["status" => 1,"aaData" => array()]);
         }
         // Fetch records
         $records = DB::table('tbl_student_interview_history')
@@ -711,11 +711,11 @@ class StudentController extends Controller
            "aaData" => $records
         );
 
-        return response()->json($response); 
+        return response()->json($response);
     }
     public function get_hostel_fee_history(Request $request, $student_id=''){
         if(empty($student_id)){
-            return response()->json(["status" => 1,"aaData" => array()]); 
+            return response()->json(["status" => 1,"aaData" => array()]);
         }
         // Fetch records
         $records = DB::table('tbl_student_fee_history')
@@ -730,7 +730,7 @@ class StudentController extends Controller
            "aaData" => $records
         );
 
-        return response()->json($response); 
+        return response()->json($response);
     }
 
     public function delete(Request $request, $id)
@@ -788,7 +788,7 @@ class StudentController extends Controller
            "status" => $success,
            "message" => $message,
            'number'=>$res['user_contact'],
-           'notification'=>$res['msg'] 
+           'notification'=>$res['msg']
         );
 
         return response()->json($response);
@@ -797,7 +797,7 @@ class StudentController extends Controller
     {
         if($request->fee_id && $request->student_id){
             $doc_record = DB::table('tbl_student_fee_history')->where('id', $request->fee_id)->where('student_id', $request->student_id)->update(['approval_status'=>$request->status,'approved_by'=>Auth::user()->id]);
-            
+
             $res = $this->store_notification($request->student_id, "tutuion_fee_status");
             $success = 1;
             $message = "Student Fee Status Update successfully";
@@ -810,7 +810,7 @@ class StudentController extends Controller
            "status" => $success,
            "message" => $message,
            'number'=>$res['user_contact'],
-           'notification'=>$res['msg'] 
+           'notification'=>$res['msg']
         );
 
         return response()->json($response);
@@ -831,7 +831,7 @@ class StudentController extends Controller
            "status" => $success,
            "message" => $message,
            'number'=>$res['user_contact'],
-           'notification'=>$res['msg'] 
+           'notification'=>$res['msg']
         );
 
         return response()->json($response);
@@ -852,42 +852,47 @@ class StudentController extends Controller
            "status" => $success,
            "message" => $message,
            'number'=>$res['user_contact'],
-           'notification'=>$res['msg'] 
+           'notification'=>$res['msg']
         );
 
         return response()->json($response);
     }
-    
+
     public function enquiry()
-    {   
+    {
          $result['title']="Enquiry";
         $result['sub_title']="Enquiry List";
         $result['title_url']="";
         // Country Tabel Data Send
         $result['data']=Enquiry::orderBy('id', 'DESC')->paginate(config('constants.PER_PAGE'));
         return view('admin/student/enquiry',$result);
-       
+
     }
-    
-    public function destroy_enquiry(Request $request)
-    {
-        print_r($request); die;
-        if($id){
-            // $banner = DB::table('tbl_student')->where('id', $id)->first();
-            // $this->removeFile('uploads/teaching',$banner->image);
+
+    public function destroy_enquiry(Request $request, $id)
+{
+    if ($id) {
+        // Fetch the enquiry by ID
+        $enquiry = DB::table('enquiries')->where('id', $id)->first();
+
+        if ($enquiry) {
+            // Delete the enquiry
             DB::table('enquiries')->where('id', $id)->delete();
-            $success = true;
             $message = "Enquiry deleted successfully";
-        }else{
-            $success = true;
+        } else {
             $message = "Enquiry not found";
         }
-        return redirect()->route('admin.student.get_enquiry')->with('success', $message);
+    } else {
+        $message = "Invalid request";
     }
-    
-    
+
+    // Redirect with a success message
+    return redirect()->route('admin.student.get_enquiry')->with('success', $message);
+}
+
+
     public function readNotification($id){
-        
+
         $read = DB::table('tbl_notification')->where('id',$id)->update(['status'=>'1']);
         if($read){
                 $response = array(
@@ -900,9 +905,9 @@ class StudentController extends Controller
         }
         return response()->json($response);
     }
-    
+
     public function getFee(Request $request){
-        
+
         $type = $request->type;
         $data = DB::table('tbl_fee')->where('id',1)->first();
         if($type=='1'){
@@ -910,7 +915,7 @@ class StudentController extends Controller
         }else{
             $fee = $data->fee_usd;
         }
-        
+
         if($data){
                 $response = array(
                "status" => 'Success',

@@ -61,7 +61,7 @@
             <div class="row align-items-center">
                <div class="col-lg-6 admission-content">
                   <div class="admission-image">
-                  <img src="{{ asset('assets/web/images/campus-information/gruni-uni.jpg')}}" alt="gruni-uni" loading="lazy">
+                  <img src="{{ asset('assets/web/images/campus-information/gruni-uni.webp')}}" alt="gruni-uni" loading="lazy">
                   <div class="icon">
                      <a class="popup-youtube play-btn show-modal" href="javascript:void();"><i class="ri-play-fill"></i></a>
                   </div>
@@ -321,7 +321,7 @@
                <div class="col-lg-6">
                   <div class="student-life-card">
                       <a href="javascript:void();" class="show-modal">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-1.jpg')}}" alt="Image" loading="lazy">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-1.webp')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>Accommodation</p>
                      </div>
@@ -331,7 +331,7 @@
                <div class="col-lg-6">
                    <a href="javascript:void();" class="show-modal">
                   <div class="student-life-card">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-2.jpg')}}" alt="Image" loading="lazy">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-2.webp')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>India Food</p>
                      </div>
@@ -339,7 +339,7 @@
                   </a>
                   <a href="javascript:void();" class="show-modal">
                   <div class="student-life-card">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-3.jpg')}}" alt="Image" loading="lazy">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-3.webp')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>Health and Wellness</p>
                      </div>

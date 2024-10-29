@@ -53,6 +53,17 @@
             transition: background-color 0.3s, color 0.3s;
         }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16676531392">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16676531392');
+</script>
     @include('layouts.comman-scripts')
     @yield('page-style')
 
@@ -81,11 +92,11 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
-                        
+
                         @php
                             $notification_data = DB::table('tbl_notification')->where('user_id', Auth::user()->id)->orderBy("id", "DESC")->get();
                             $unnotification_data = DB::table('tbl_notification')->where('status', '2')->where('user_id', Auth::user()->id)->orderBy("id", "DESC")->get();
-                            
+
                         @endphp
                         <li class="notifications dropdown dropdown-animated scale-left">
                             <span class="counter">{{ count($unnotification_data) }}</span>
@@ -252,8 +263,8 @@
                         @php
                             $_auth = Auth::user();
                         @endphp
-                        
-                        
+
+
                         @if($_auth->hasAnyPermission(['user-list', 'user-create', 'user-edit', 'user-delete', 'partner-agent-list', 'partner-agent-create', 'partner-agent-edit', 'partner-agent-delete']))
                         <li class="nav-item dropdown {{ ( Route::is('users.list.index') || Route::is('partner-user.list.index') ) ? 'open' : ''}}">
                             <a class="dropdown-toggle" href="javascript:void(0);">
@@ -271,7 +282,7 @@
                                     <a href="{{ route('users.list.index') }}">Admin User</a>
                                 </li>
                                 @endif
-                                
+
                                 @if($_auth->hasAnyPermission(['partner-agent-list', 'partner-agent-create', 'partner-agent-edit', 'partner-agent-delete']))
                                 <li class="{{ ( Route::is('partner-user.list.index')) ? 'active' : ''}}">
                                     <a href="{{ route('partner-user.list.index') }}">Partner/Agent</a>
@@ -299,7 +310,7 @@
                                     <a href="{{ route('roles.index') }}">Roles</a>
                                 </li>
                                 @endif
-                                
+
                                 @if(Auth::user()->hasAnyRole(['Admin']))
                                 <li class="{{ ( Route::is('setting.fee')) ? 'active' : ''}}">
                                     <a href="{{ route('setting.fee') }}">Fee</a>
@@ -308,7 +319,7 @@
                             </ul>
                         </li>
                         @endif
-                        
+
 
                         <li class="nav-item dropdown {{ ( Route::is('web-setting.banner') || Route::is('web-setting.announcement') || Route::is('web-setting.latest-news') || Route::is('web-setting.our-podcast') || Route::is('web-setting.success-story') || Route::is('web-setting.discover-gruni') || Route::is('web-setting.school-and-program') || Route::is('web-setting.testimonial')  || Route::is('web-setting.university-cateogry')  || Route::is('web-setting.university')  || Route::is('web-setting.school-of-medicine-course') || Route::is('web-setting.school-of-medicine') || Route::is('web-setting.gruni-information') || Route::is('web-setting.teaching-category') || Route::is('web-setting.teaching') || Route::is('web-setting.admission-category') || Route::is('web-setting.admission') ) ? 'open' : ''}}">
                             <a class="dropdown-toggle" href="javascript:void(0);">
@@ -399,8 +410,8 @@
                                 <span class="title">Enquiry</span>
                             </a>
                         </li>
-                       
-                                                 
+
+
                     </ul>
                 </div>
             </div>
@@ -408,7 +419,7 @@
 
             <!-- Page Container START -->
             <div class="page-container">
-                
+
 
                 <!-- Content Wrapper START -->
                 <div class="main-content">
@@ -437,7 +448,7 @@
                                     @endif
                                     @if(Session()->has('error'))
                                     <div class="alert alert-danger alert-dismissible fade show">
-                                        <strong>{{session('error')}}</strong> 
+                                        <strong>{{session('error')}}</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -486,7 +497,7 @@
     <script src="{{ url('assets/admin/vendor/summernote/dist/summernote-bs4.min.js')}}"></script>
 
     <script src="{{ url('assets/admin/js/forms/form-elements.js')}}"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 
     <!--<script src="{{ url('assets/admin/vendor/sweetalert/lib/sweet-alert.js')}}"></script>-->
@@ -524,11 +535,11 @@
         function _error(msg){
             notify_message(msg, "error");
         }
-        
+
         @if(Session::has('error'))
             _error('{{ Session::get("error") }}');
         @endif
-        
+
         @if(Session::has('success'))
             _success('{{ Session::get("success") }}');
         @endif

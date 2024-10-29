@@ -44,7 +44,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Link <span class="text-danger">*</span></label>
-                                    <input type="url" class="form-control" value="{{ $edit_data && $edit_data->link ? $edit_data->link : ''  }}" name="link" placeholder="Enter Link" required>
+                                    <input type="text" class="form-control" value="{{ $edit_data && $edit_data->link ? $edit_data->link : ''  }}" name="link" placeholder="Enter Link" required>
                                 </div>
                             </div>
                             {{-- <div class="col-md-6">

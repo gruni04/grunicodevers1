@@ -11,7 +11,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-        
+
             <div class="table-overflow">
                  <table class="table">
          <thead class="thead-light">
@@ -37,7 +37,7 @@
 
             // Remove special characters
             $message = preg_replace('/[^A-Za-z0-9\s]/', '', $message);
-            
+
             // Remove HTML tags
             $message = strip_tags($message);
                ?>
@@ -49,17 +49,17 @@
                <td>{!! Str::limit($message, 40) !!}</td>
                <td>{{ date('d/m/Y', strtotime($list->created_at)) }}</td>
                <td>
-                  <a href="javascript:void();" onclick="delete_item(`{{route('admin.student.delete-enquireys', ['id'=>$list->id])}}`)"><button type="button"
+                  <a href="javascript:void();" onclick="delete_item(`{{route('admin.student.delete-enquireys', ['id'=>$list->id])}}`)"><button type="submit"
                      class="btn btn-danger">Delete</button></a>
                </td>
             </tr>
             @endforeach
          </tbody>
       </table>
-            </div> 
-        </div>       
-    </div> 
-    
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 
@@ -72,9 +72,9 @@
         function delete_item(url) {
             if(confirm("Are You Sure want to delete User?")){
                 window.location = url;
-            } 
+            }
         }
-        
+
         $(document).ready(function() {
             // DataTable
             $('.datatable').DataTable({

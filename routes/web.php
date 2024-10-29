@@ -61,6 +61,10 @@ Route::get('testimonial', [WebController::class, 'testimonial'])->name('web.test
 Route::post('subscribe', [WebController::class, 'subscribe'])->name('web.subscribe');
 Route::post('save-enquiry-data', [WebController::class, 'save_enquiry'])->name('web.save-enquiry');
 Route::get('associate-parter', [WebController::class, 'associate_parter']);
+Route::get('/gallery', [WebController::class, 'gallary'])->name('web.gallery');
+Route::get('/campus-life', [WebController::class, 'campus_life'])->name('web.campus_life');
+Route::get('/our-campus', [WebController::class, 'our_campus'])->name('web.our_campus');
+Route::get('/academics', [WebController::class, 'academics'])->name('web.academics');
 
 
 // Route::get('/', function () {
@@ -83,11 +87,11 @@ Route::get('details212', function () {
         $message->to($data['email'])
         ->subject("Test mail on Gruni University");
     });
-    // print_r($res) ;die;  
+    // print_r($res) ;die;
     // echo $ip = request()->ip();//'50.90.0.1'; //Request::ip();//'50.90.0.1';
     // $data = \Location::get($ip);
     // dd($data);
-   
+
 });
 
 
@@ -111,7 +115,7 @@ Route::group(['middleware' => ['auth'] ], function() {
     Route::group(['name' => 'roles'], function() {
         Route::get('user-roles', [RoleController::class, 'datatables'])->name('roles.datatables');
     });
-    
+
     Route::group(['name' => 'users'], function() {
         Route::get('users-list/index', [UserController::class, 'index'])->name('users.list.index');
         Route::post('users/updates', [UserController::class, 'updates'])->name('user.update');
@@ -121,7 +125,7 @@ Route::group(['middleware' => ['auth'] ], function() {
 
         Route::get('/edit-password', [UserController::class, 'change_password'])->name('user.edit-user-password');
         Route::post('/update-password', [UserController::class, 'update_password'])->name('user.update-user-password');
-        
+
 
         Route::get('partner-user-list/index', [UserController::class, 'partner_agent'])->name('partner-user.list.index');
         Route::get('partner-user/save/{id?}', [UserController::class, 'create_partner_agent'])->name('admin.partner-user.save');
@@ -132,12 +136,12 @@ Route::group(['middleware' => ['auth'] ], function() {
     Route::group(['name' => 'roles'], function() {
         Route::post('/updates', [RoleController::class, 'update'])->name('role.updates');
         Route::get('/delete/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
-     
+
     });
 
     Route::group(['name' => 'student'], function() {
         Route::get('admin/student/view/{id}', [StudentController::class, 'view'])->name('admin.student.view');
-        
+
         Route::get('admin/student/list', [StudentController::class, 'index'])->name('admin.student.index');
         Route::get('admin/student/profile_list', [StudentController::class, 'profile_list'])->name('admin.student.profile_list');
         Route::get('admin/student/save-student/{id?}', [StudentController::class, 'save'])->name('admin.student.save-student');
@@ -171,28 +175,28 @@ Route::group(['middleware' => ['auth'] ], function() {
         Route::get('web-setting/delete-announcement/{id}', [AnnouncementController::class, 'delete'])->name('web-setting.delete-announcement');
         Route::get('web-setting/list-announcement', [AnnouncementController::class, 'datatables'])->name('web-setting.list-announcement');
 
-        
+
         Route::get('web-setting/latest-news', [LatestNewsController::class, 'index'])->name('web-setting.latest-news');
         Route::get('web-setting/save-latest-news/{id?}', [LatestNewsController::class, 'save'])->name('web-setting.save-latest-news');
         Route::post('web-setting/store-latest-news', [LatestNewsController::class, 'store'])->name('web-setting.store-latest-news');
         Route::get('web-setting/delete-latest-news/{id}', [LatestNewsController::class, 'delete'])->name('web-setting.delete-latest-news');
         Route::get('web-setting/list-latest-news', [LatestNewsController::class, 'datatables'])->name('web-setting.list-latest-news');
 
-        
+
         Route::get('web-setting/our-podcast', [OurPodcastController::class, 'index'])->name('web-setting.our-podcast');
         Route::get('web-setting/save-our-podcast/{id?}', [OurPodcastController::class, 'save'])->name('web-setting.save-our-podcast');
         Route::post('web-setting/store-our-podcast', [OurPodcastController::class, 'store'])->name('web-setting.store-our-podcast');
         Route::get('web-setting/delete-our-podcast/{id}', [OurPodcastController::class, 'delete'])->name('web-setting.delete-our-podcast');
         Route::get('web-setting/list-our-podcast', [OurPodcastController::class, 'datatables'])->name('web-setting.list-our-podcast');
 
-        
+
         Route::get('web-setting/success-story', [SuccessStoryController::class, 'index'])->name('web-setting.success-story');
         Route::get('web-setting/save-success-story/{id?}', [SuccessStoryController::class, 'save'])->name('web-setting.save-success-story');
         Route::post('web-setting/store-success-story', [SuccessStoryController::class, 'store'])->name('web-setting.store-success-story');
         Route::get('web-setting/delete-success-story/{id}', [SuccessStoryController::class, 'delete'])->name('web-setting.delete-success-story');
         Route::get('web-setting/list-success-story', [SuccessStoryController::class, 'datatables'])->name('web-setting.list-success-story');
 
-        
+
         Route::get('web-setting/discover-gruni', [DiscoverGruniController::class, 'index'])->name('web-setting.discover-gruni');
         Route::get('web-setting/save-discover-gruni/{id?}', [DiscoverGruniController::class, 'save'])->name('web-setting.save-discover-gruni');
         Route::post('web-setting/store-discover-gruni', [DiscoverGruniController::class, 'store'])->name('web-setting.store-discover-gruni');
@@ -216,7 +220,7 @@ Route::group(['middleware' => ['auth'] ], function() {
         Route::post('web-setting/store-university-cateogry', [UniversityCateogryController::class, 'store'])->name('web-setting.store-university-cateogry');
         Route::get('web-setting/delete-university-cateogry/{id}', [UniversityCateogryController::class, 'delete'])->name('web-setting.delete-university-cateogry');
         Route::get('web-setting/list-university-cateogry', [UniversityCateogryController::class, 'datatables'])->name('web-setting.list-university-cateogry');
-        
+
 
         Route::get('web-setting/university', [UniversityController::class, 'index'])->name('web-setting.university');
         Route::get('web-setting/save-university/{id?}', [UniversityController::class, 'save'])->name('web-setting.save-university');
@@ -236,14 +240,14 @@ Route::group(['middleware' => ['auth'] ], function() {
         Route::get('web-setting/delete-school-of-medicine/{id}', [SchoolOfMedicineController::class, 'delete'])->name('web-setting.delete-school-of-medicine');
         Route::get('web-setting/list-school-of-medicine', [SchoolOfMedicineController::class, 'datatables'])->name('web-setting.list-school-of-medicine');
 
-        
+
         Route::get('web-setting/gruni-information', [GruniInformationController::class, 'index'])->name('web-setting.gruni-information');
         Route::get('web-setting/save-gruni-information/{id?}', [GruniInformationController::class, 'save'])->name('web-setting.save-gruni-information');
         Route::post('web-setting/store-gruni-information', [GruniInformationController::class, 'store'])->name('web-setting.store-gruni-information');
         Route::get('web-setting/delete-gruni-information/{id}', [GruniInformationController::class, 'delete'])->name('web-setting.delete-gruni-information');
         Route::get('web-setting/list-gruni-information', [GruniInformationController::class, 'datatables'])->name('web-setting.list-gruni-information');
 
-        
+
         Route::get('web-setting/teaching-category', [TeachingCategoryController::class, 'index'])->name('web-setting.teaching-category');
         Route::get('web-setting/save-teaching-category/{id?}', [TeachingCategoryController::class, 'save'])->name('web-setting.save-teaching-category');
         Route::post('web-setting/store-teaching-category', [TeachingCategoryController::class, 'store'])->name('web-setting.store-teaching-category');
@@ -256,7 +260,7 @@ Route::group(['middleware' => ['auth'] ], function() {
         Route::get('web-setting/delete-teaching/{id}', [TeachingController::class, 'delete'])->name('web-setting.delete-teaching');
         Route::get('web-setting/list-teaching', [TeachingController::class, 'datatables'])->name('web-setting.list-teaching');
 
-        
+
         Route::get('web-setting/admission-category', [AdmissionCategoryController::class, 'index'])->name('web-setting.admission-category');
         Route::get('web-setting/save-admission-category/{id?}', [AdmissionCategoryController::class, 'save'])->name('web-setting.save-admission-category');
         Route::post('web-setting/store-admission-category', [AdmissionCategoryController::class, 'store'])->name('web-setting.store-admission-category');
@@ -268,22 +272,22 @@ Route::group(['middleware' => ['auth'] ], function() {
         Route::post('web-setting/store-admission', [AdmissionController::class, 'store'])->name('web-setting.store-admission');
         Route::get('web-setting/delete-admission/{id}', [AdmissionController::class, 'delete'])->name('web-setting.delete-admission');
         Route::get('web-setting/list-admission', [AdmissionController::class, 'datatables'])->name('web-setting.list-admission');
-        
-       
-    //   Ajax routes 
+
+
+    //   Ajax routes
        Route::get('read-notification/{id}', [StudentController::class, 'readNotification']);
        Route::post('get-student-fee', [StudentController::class, 'getFee']);
     });
-    
+
     // Fee setting routes
     Route::get('setting/fee', [FeeController::class, 'fee'])->name('setting.fee');
     Route::get('setting/save-fee/{id?}', [FeeController::class, 'save_fee'])->name('setting.save-fee');
     Route::post('setting/store-fee', [FeeController::class, 'store_fee'])->name('setting.store-fee');
     Route::get('setting/delete-fee/{id}', [FeeController::class, 'delete_fee'])->name('setting.delete-fee');
     Route::get('setting/list-fee', [FeeController::class, 'datatables_fee'])->name('setting.list-fee');
-    
-    
-       
+
+
+
 });
 Route::fallback(function () {
     Session::flash('error','Page not found');
@@ -313,7 +317,7 @@ Route::get('/optimize', function() {
     Artisan::call('route:clear');
     // Artisan::call('optimize:clear');
     return "Optimized!";
- 
+
 });
 
 Route::get('/cmds', function() {
@@ -321,7 +325,7 @@ Route::get('/cmds', function() {
     // Artisan::call('permission:create-permission "web-setting-create"');
     // Artisan::call('permission:create-permission "web-setting-edit"');
     // Artisan::call('permission:create-permission "web-setting-delete"');
-    
+
     // Artisan::call('make:model ProjectUser -mcr');
     // Artisan::call('migrate:rollback');
     // Artisan::call('migrate');
@@ -339,7 +343,7 @@ use Illuminate\Support\Facades\Hash;
 
 Route::get('update-user-new123', function(){
     $pass = Hash::make('');
-    
+
     $user = DB::table('users')->where('id',1)->update(['email'=>'admin@gruni.co.in','password'=>$pass]);
 });
 

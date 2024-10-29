@@ -29,8 +29,9 @@
 					         @foreach($testimonial as $k=>$v)
 			               <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200" data-aos-once="true">
 			                  <div class="single-stories-card style2">
-			                     <iframe src="{{ $v->link }}" title="{{ $v->title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			                     <div class="stories-content">
+			                     {{-- <iframe src="{{ $v->link }}" title="{{ $v->title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+			                     <lite-youtube videoid="{{ $v->link }}" title="{{ $v->title }}"></lite-youtube>
+                                 <div class="stories-content">
 			                        <h3>{{ $v->title }}</h3>
 			                     </div>
 			                  </div>

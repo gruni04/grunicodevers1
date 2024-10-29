@@ -14,6 +14,8 @@ use Session;
 use Crypt;
 use Cache;
 use Image;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EnquiryMail;
 
 class WebController extends Controller
 {
@@ -183,48 +185,124 @@ class WebController extends Controller
         print_r($_POST); die;
     }
 
-    public function save_enquiry(Request $request)
-    {
-        $data['page_title'] = 'GRUNI India';
-        // $data['breadcum']   = array(
-        //                 'Home' => url('/'),
-        //                 'Home'=>''
-        //             );
+    // public function save_enquiry(Request $request)
+    // {
+    //     $data['page_title'] = 'GRUNI India';
+    //     // $data['breadcum']   = array(
+    //     //                 'Home' => url('/'),
+    //     //                 'Home'=>''
+    //     //             );
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required | string | max:255',
-            'email' => 'required | email | max:255',
-            'mobile' => 'required | regex:/^[0-9]{10}$/',
-            'admission_city' => 'required',
-        ]);
-        if (!$validator->passes()) {
-            return response()->json(['status'=>0, 'message'=>$validator->errors()->all()]);
-        }
+    //     $validator = Validator::make($request->all(), [
+    //         'name' => 'required | string | max:255',
+    //         'email' => 'required | email | max:255',
+    //         'mobile' => 'required | regex:/^[0-9]{10}$/',
+    //         'admission_city' => 'required',
+    //     ]);
+    //     if (!$validator->passes()) {
+    //         return response()->json(['status'=>0, 'message'=>$validator->errors()->all()]);
+    //     }
 
-        $obj = new Enquiry;
-        $msg = "Enquiry Send Successful";
-        $msg_error="Failed to Send Enquiry";
-        $data['page_title'] = 'GRUNI India';
-        $obj->name = $request->name;
-        $obj->email = $request->email;
-        $obj->mobile = $request->mobile;
-        $obj->admission_city = $request->admission_city;
-        $obj->message = $request->message;
+    //     $obj = new Enquiry;
+    //     $msg = "Enquiry Send Successful";
+    //     $msg_error="Failed to Send Enquiry";
+    //     $data['page_title'] = 'GRUNI India';
+    //     $obj->name = $request->name;
+    //     $obj->email = $request->email;
+    //     $obj->mobile = $request->mobile;
+    //     $obj->admission_city = $request->admission_city;
+    //     $obj->message = $request->message;
 
-        if($obj->save()){
+    //     if($obj->save()){
 
-            $res['status']=1;
-            $res['message']=$msg;
-        }else{
-            $res['status']=0;
-            $res['message']=$msg_error;
-        }
-        return view("web.index", $data);
+    //         $res['status']=1;
+    //         $res['message']=$msg;
+    //     }else{
+    //         $res['status']=0;
+    //         $res['message']=$msg_error;
+    //     }
+
+    //     return view("web.index", $data);
+    // }
+
+public function save_enquiry(Request $request)
+{
+    $data['page_title'] = 'GRUNI India';
+
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'mobile' => 'required|regex:/^[0-9]{10}$/',
+        'admission_city' => 'required',
+    ]);
+
+    if (!$validator->passes()) {
+        return response()->json(['status' => 0, 'message' => $validator->errors()->all()]);
     }
+
+    $obj = new Enquiry;
+    $msg = "Enquiry Sent Successfully";
+    $msg_error = "Failed to Send Enquiry";
+
+    $obj->name = $request->name;
+    $obj->email = $request->email;
+    $obj->mobile = $request->mobile;
+    $obj->admission_city = $request->admission_city;
+    $obj->message = $request->message;
+
+    if ($obj->save()) {
+        // Send email after successfully saving the enquiry
+        $enquiryData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'admission_city' => $request->admission_city,
+            'message' => $request->message,
+        ];
+
+        try {
+            Mail::to('info@gruni.co.in')->send(new EnquiryMail($enquiryData)); // Replace with the desired recipient email
+            $res['status'] = 1;
+            $res['message'] = $msg;
+        } catch (\Exception $e) {
+            $res['status'] = 0;
+            $res['message'] = 'Enquiry saved, but email could not be sent: ' . $e->getMessage();
+        }
+    } else {
+        $res['status'] = 0;
+        $res['message'] = $msg_error;
+    }
+
+    return view("web.index", $data);
+}
+
 
     public function associate_parter()
     {
         return view('web.pages.associate-partner');
+    }
+
+    public function gallary()
+    {
+        // You can fetch any required data from the database here.
+        // Example: $photos = Photo::all();
+
+        return view('web.pages.gallary'); // Return the gallery view
+    }
+
+    public function campus_life()
+    {
+        return view('web.pages.campus-life');
+    }
+
+    public function our_campus()
+    {
+        return view('web.pages.our-campus');
+    }
+
+    public function academics()
+    {
+        return view('web.pages.academics');
     }
 
 }

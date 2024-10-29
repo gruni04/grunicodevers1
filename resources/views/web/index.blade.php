@@ -52,6 +52,8 @@
      </div>
 
 
+
+
       {{-- <div class="row video-row">
         <div class="col-md-6">
             <video controls width="300" height="600">
@@ -96,7 +98,7 @@
             <div class="row align-items-center">
                <div class="col-lg-6 admission-content">
                   <div class="admission-image">
-                  <img src="{{ asset('assets/web/images/campus-information/gruni-uni.jpg')}}" alt="gruni-uni" loading="lazy">
+                  <img src="{{ asset('assets/web/images/campus-information/gruni-uni.webp')}}" alt="gruni-uni" loading="lazy">
                   <div class="icon">
                      <a class="popup-youtube play-btn" href="{{ $gruni_information->link }}"><i class="ri-play-fill"></i></a>
                   </div>
@@ -106,7 +108,9 @@
                   <div class="campus-content style-2">
                      <div class="campus-title">
                         <h2>GRUNI Information</h2>
-                        <p>{!! $gruni_information->description !!}</p>
+                        {{-- <p>{!! $gruni_information->description !!}</p> --}}
+                        <p>
+                            We establish a sophisticated academic culture and create intellectual wealth: By implementing educational programmes based on scientific achievements and orienting our activities towards the student, we will prepare generations of competent specialists for Humanitarian, Social, Administrative, Medical and other spheres of high demand</p>
                      </div>
 
                      <div class="counter">
@@ -224,7 +228,9 @@
                               {{-- <img src="{{ url('uploads/our-podcast/'.$v->image) }}" alt="Image"> --}}
                               {{-- <a class="popup-youtube play-btn" href="{{ $v->link }}"><i class="ri-play-fill"></i></a> --}}
 
-                              <iframe src="{{ $v->link }}" loading="lazy"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                              {{-- <iframe src="{{ $v->link }}" loading="lazy"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+
+                              <lite-youtube videoid="{{ $v->link }}"></lite-youtube>
                               <div class="episodes">
                                  <p>Episodes:{{ $v->episode_no }}</p>
                               </div>
@@ -287,9 +293,9 @@
                @foreach($testimonial as $k=>$v)
                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200" data-aos-once="true">
                   <div class="single-stories-card style2">
-
-                     <iframe src="{{ $v->link }}" title="{{ $v->title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                     <div class="stories-content">
+                    {{-- <iframe src="{{ $v->link }}" title="{{ $v->title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+                    <lite-youtube videoid="{{ $v->link }}" title="{{ $v->title }}"></lite-youtube>
+                    <div class="stories-content">
                         <h3>{{ $v->title }}</h3>
                      </div>
                   </div>
@@ -359,7 +365,7 @@
                <div class="col-lg-6">
                   <div class="student-life-card">
                       <a href="{{ route('web.student', ['id1'=>'accommodation']) }}">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-1.jpg')}}" alt="Image" loading="lazy">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-1.webp')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>Accommodation</p>
                      </div>
@@ -369,7 +375,7 @@
                <div class="col-lg-6">
                    <a href="{{ route('web.india-Food', ['id2'=>'india-food']) }}">
                   <div class="student-life-card">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-2.jpg')}}" alt="Image" loading="lazy">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-2.webp')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>India Food</p>
                      </div>
@@ -377,7 +383,7 @@
                   </a>
                   <a href="{{ route('web.health', ['id3'=>'health-wellness']) }}">
                   <div class="student-life-card">
-                     <img src="{{ asset('assets/web/images/stundent-life/student-life-3.jpg')}}" alt="Image" loading="lazy">
+                     <img src="{{ asset('assets/web/images/stundent-life/student-life-3.webp')}}" alt="Image" loading="lazy">
                      <div class="tags">
                         <p>Health and Wellness</p>
                      </div>
@@ -388,20 +394,9 @@
          </div>
       </div>
 
-        <style>
-    /* .enquiry-form-fields {
-        padding: 10px;
-    }
-    .modal-header {
-        padding: 3px 20px !important;
-    }
-    @media (min-width: 576px){
-        .modal {
-            --bs-modal-margin: -5.25rem;
-        }
-    } */
 
-    .enquiry-form-container {
+    {{-- <style>
+     .enquiry-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -415,11 +410,11 @@
 }
 
 .video-left {
-    left: 130px; /* Adjust this value based on your layout */
+    left: 130px;
 }
 
 .video-right {
-    right: 130px; /* Adjust this value based on your layout */
+    right: 130px;
 }
 
 .enquiry-form-fields {
@@ -448,9 +443,9 @@
 
 
 
-.video-ad {
+.video-ad video {
     position: fixed;
-    top: 167px; /* Changed from bottom to top */
+    top: 167px;
     right: 20px;
     width: 40px;
     height: 260px;
@@ -465,41 +460,43 @@
 
 .close-btn {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #c10606;
+    top: 144px;
+    right: 14px;
+    background-color: grey;
     color: white;
     border: none;
     border-radius: 50%;
-    width: 23px;
-    height: 24px;
-    font-size: 17px;
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
     cursor: pointer;
     z-index: 1001;
 }
 
 @media only screen and (max-width: 768px) {
-    .video-ad {
+    .video-ad video {
         width: 200px;
         height: 350px;
-        right: 60px;
+        right: 40px;
         bottom: 10px;
         display: block;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .video-ad {
+    .video-ad video {
         width: 150px;
         height: 260px;
-        right: 20px;
+        right: 35px;
         bottom: 5px;
         display: block;
     }
 }
 
 
-</style>
+</style>  --}}
+
+
 {{-- <div class="modal fade" id="enquiry-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 50px;">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="padding-top: 85px;">
@@ -542,7 +539,7 @@
             </div>
         </form> --}}
 
-        <div id="video-ad" class="video-ad">
+        {{-- <div id="video-ad" class="video-ad">
             <button class="close-btn" onclick="closeAd()">×</button>
             <a href="https://gruni.edu.ge/">
             <video width="100%" height="auto" autoplay loop muted>
@@ -656,7 +653,7 @@
         var videoLeft = document.getElementById('videoLeft');
         var videoRight = document.getElementById('videoRight');
 
-        // Attempt to play the videos
+
         videoLeft.play().catch(function(error) {
             console.log("Video on the left couldn't autoplay, muting and trying again.");
             videoLeft.muted = true;
@@ -671,46 +668,12 @@
     });
 </script>
 
-      </div>
-      {{-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" form="enquiry-form">Send Enquiry</button>
-      </div> --}}
-    </div>
-  </div>
-</div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
 {{-- <script>
-    // $(document).ready(function(){
-
-    //        $("#enquiry-Modal").modal('show');
-
-    // });
-
-    $(document).on('click', '.modal-close', function(){
-
-        $("#enquiry-Modal").modal('hide');
-    });
-
-    $(document).ready(function(){
-        // Delay the modal by 10 seconds (10000 milliseconds)
-        setTimeout(function(){
-            $("#enquiry-Modal").modal('show');
-        }, 10000);
-        $("#enquire-btn").click(function(){
-            $("#enquiry-Modal").modal('show');
-        })
-        $("#enquiry-link").click(function(){
-            $("#enquiry-Modal").modal('show');
-        })
-    });
-
-
-</script> --}}
-
-<script>
     $(document).on('click', '.modal-close', function() {
         $("#enquiry-Modal").modal('hide');
     });
@@ -736,7 +699,7 @@
             $("#enquiry-Modal").modal('show');
         });
     });
-</script>
+</script> --}}
 
 
 @endsection
